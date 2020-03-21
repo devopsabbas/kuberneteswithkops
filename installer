@@ -1,0 +1,11 @@
+#!/bin/bash
+# This is Tool is designed to setup kubernetes cluster on AWS or gcp 
+# initially this is only designed for one of customer's need 
+# We tried to cover as mush as scenarion as we have in our mind
+
+detectSetup () {
+
+	sh bin/osdetect
+	sh bin/clustersetup
+}
+

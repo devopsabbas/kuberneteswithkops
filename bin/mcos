@@ -1,0 +1,12 @@
+#!/bin/bash
+
+installPkgs () {
+
+	brew update
+	brew install docker
+	brew install kubectl
+	brew install awscli
+	brew install kops
+}
+
+installPkgs

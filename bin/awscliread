@@ -1,0 +1,9 @@
+#!/bin/bash
+
+read -p "Enter AWS Key ID : " KEY_ID
+echo $KEY_ID |base64 > conf/base64keyid
+read -p "Enter AWS Secret Access : " A_ID
+echo $A_ID | base64 > conf/base64secid
+read -p "Enter Default Region : " d_region
+echo $d_region | base64 > conf/base64region
+

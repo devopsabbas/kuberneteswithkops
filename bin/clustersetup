@@ -1,0 +1,21 @@
+#!/bin/bash
+
+Setuppre () {
+	read -p "Enter domain for kubernetes cluster : " domain
+	aws route53 create-hosted-zone --name $domain --caller-reference 2014-04-01-18:47 --hosted-zone-config Comment="command-line version"
+	aws s3 mb s3://$domain
+	export KOPS_STATE_STORE=s3://$domain
+	read -p "Availability Zone for Cluster : " zone
+	read -p "Enter VPC ID to launch cluster : " vpcid
+
+	export MASTER_SIZE=m4.medium
+	export NODE_SIZE=m4.large
+	export NODE_COUNT=2
+	export K8VERSION=1.16.2
+	kops create cluster --cloud=aws --zones=$zone --name=$domain --dns-zone=$domain --dns private \
+	--node-count=$NODE_COUNT --networking weave --vpc $vpcid --master-size=$MASTER_SIZE --kubernetes-version \
+	--node-size $NODE_SIZE --kubernetes-version $K8VERSION
+	kops update cluster $domain --yes
+}
+
+Setuppre

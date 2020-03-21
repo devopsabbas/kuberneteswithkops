@@ -1,0 +1,29 @@
+#!/bin/bash
+
+case "$OSTYPE" in
+  solaris*) 
+	export OS="SOLARIS"
+	echo "Solaris Support is not available.... "
+	sh bin/awscliread
+        sh bin/awscliconfig 
+  ;;
+  darwin*)  
+	export OS="OSX"
+	sh bin/mcos
+	sh bin/awscliread
+	sh bin/awscliconfig
+  ;; 
+  linux*)   
+        export OS="LINUX"
+;;
+  bsd*)     
+	export OS="BSD" 
+;;
+  msys*)    
+	export OS="WIN"
+;;
+  *)        
+	echo "unknown: $OSTYPE" 
+;;
+esac
+
