@@ -15,6 +15,9 @@ case "$OSTYPE" in
   ;; 
   linux*)   
         export OS="LINUX"
+	sh bin/linux-centos
+	sh bin/awscliread
+	sh bin/awscliconfig
 ;;
   bsd*)     
 	export OS="BSD" 

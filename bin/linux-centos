@@ -14,8 +14,10 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 }
 
 SetupKubectl () {
-	yum update -y 
-	yum install -y kubelet kubeadm kubectl
+	yum update -y
+	wget -O kubectl https://www.dropbox.com/s/3h5ml9g1xp2nw0m/kubectl?dl=0
+	chmod +x kubectl && mv -v kubectl /usr/bin/       
+	#yum install -y kubelet kubeadm kubectl
 	sed -i ‘s/^SELINUX=enforcing$/SELINUX=permissive/’ /etc/selinux/config
 	sed -i '/swap/d' /etc/fstab
 	swapoff -a
@@ -28,11 +30,10 @@ SetupAwsCli () {
 }
 
 installKops () {
-
-	yum install -y snapd 
-	systemctl enable --now snapd.socket
-	ln -s /var/lib/snapd/snap /snap
-	snap install kops
+	wget -O kops https://www.dropbox.com/s/23ko0cskr2s5xb2/kops?dl=0
+	chmod +x kops && mv -v kops /usr/bin/kops
 }
-
+SetupKubectl
+SetupAwsCli
+installKops
 

@@ -4,10 +4,10 @@ AWS_ACCESS_ID=`cat conf/base64keyid`
 AWS_SECRET_ID=`cat conf/base64secid`
 AWS_REGION=`cat conf/base64region`
 
-          aws configure set aws_access_key_id `echo $AWS_ACCESS_ID | base64 -D`
-          aws configure set aws_secret_access_key `echo $AWS_SECRET_ID | base64 -D`
-          aws configure set default.region `echo $AWS_REGION | base64 -D`
+          aws configure set aws_access_key_id `echo $AWS_ACCESS_ID | base64 -d`
+          aws configure set aws_secret_access_key `echo $AWS_SECRET_ID | base64 -d`
+          aws configure set default.region `echo $AWS_REGION | base64 -d`
 	  aws configure list
-	  echo > conf/base64keyid 
-	  echo > conf/base64secid
-	  echo > conf/base64region	
+#	  echo > conf/base64keyid 
+#	  echo > conf/base64secid
+#	  echo > conf/base64region	
