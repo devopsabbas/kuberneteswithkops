@@ -3,7 +3,7 @@ Currently this has been tested on AWS in later section we will be creatig for ot
 like Google Azure and VMWare ESXI and hyper-V
 
 #### Step # 1 Clone Repo 
-``bash
+```bash
 [root@ip-10-0-0-118 ~]# git clone https://github.com/mansurali901/kuberneteswithkops.git
 [root@ip-10-0-0-118 ~]# cd kuberneteswithkops/
 ```
