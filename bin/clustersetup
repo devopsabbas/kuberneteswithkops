@@ -2,9 +2,10 @@
 
 Setuppre () {
 	read -p "Enter domain for kubernetes cluster : " domain
+	read -p "Bucket Name : " bucketname
 	#aws route53 create-hosted-zone --name $domain --caller-reference $domain-2014-04-01-18:47 --hosted-zone-config Comment="command-line version"
-	aws s3 mb s3://$domain
-	export KOPS_STATE_STORE=s3://$domain
+	#aws s3 mb s3://$domain
+	export KOPS_STATE_STORE=s3://$bucketname
 	read -p "Availability Zone for Cluster : " zone
 	read -p "Enter VPC ID to launch cluster : " vpcid
 
