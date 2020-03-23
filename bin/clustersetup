@@ -3,8 +3,8 @@
 Setuppre () {
 	read -p "Enter domain for kubernetes cluster : " domain
 	#aws route53 create-hosted-zone --name $domain --caller-reference $domain-2014-04-01-18:47 --hosted-zone-config Comment="command-line version"
-	aws s3 mb s3://$domain-dev
-	export KOPS_STATE_STORE=s3://$domain-dev
+	aws s3 mb s3://$domain
+	export KOPS_STATE_STORE=s3://$domain
 	read -p "Availability Zone for Cluster : " zone
 	read -p "Enter VPC ID to launch cluster : " vpcid
 
@@ -13,7 +13,7 @@ Setuppre () {
 	export NODE_COUNT=2
 	export K8VERSION=1.15.3
 	ssh-keygen -t rsa
-	kops create secret --name upworks.local sshpublickey admin -i ~/.ssh/id_rsa.pub
+	kops create secret --name $domain sshpublickey admin -i ~/.ssh/id_rsa.pub
 	kops create cluster --cloud=aws --zones=$zone --name=$domain --dns-zone=$domain --dns private --node-count $NODE_COUNT --networking=weave --vpc=$vpcid --master-size=$MASTER_SIZE --node-size=$NODE_SIZE --kubernetes-version=$K8VERSION
 	kops update cluster $domain --yes
 }
