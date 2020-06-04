@@ -9,8 +9,8 @@ Setuppre () {
 	read -p "Availability Zone for Cluster : " zone
 	read -p "Enter VPC ID to launch cluster : " vpcid
 
-	export MASTER_SIZE=t3.medium
-	export NODE_SIZE=t3.large
+	export MASTER_SIZE=t2.medium
+	export NODE_SIZE=t2.micro
 	export NODE_COUNT=2
 	export K8VERSION=1.15.3
 	ssh-keygen -t rsa
